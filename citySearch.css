@@ -28,6 +28,17 @@ body {
     padding-left: 3%;
     margin: 3vw 0% 3vw 12.5%;
 }
+.searchButton {
+    border: 1px solid #000;
+    border-radius: 5vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2.3vw;
+    text-align: center;
+    padding: 1% 2.3%;
+    margin: 0vw 0% 3vw 45%;
+    color: #fff;
+    background-color: #000;
+}
 .searchBar::placeholder {
     color:#cfcfcf;
 }
