@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.wrapper {
+    width: 100%;
+    border: 1px solid #000;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2vw;
+    color: #000;
+}
+.greet {
+    width: 50%;
+    border: 1px solid #000;
+    padding-left: 3%;
+    margin: 3vw 0% 0vw 25%;
+    font-size: 3vw;
+    text-align: center;
+}
+
+.searchBar {
+    width: 75%;
+    height: 4vw;
+    border: 2px solid #000;
+    border-radius: 5vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2vw;
+    padding-left: 3%;
+    margin: 3vw 0% 3vw 12.5%;
+}
+.searchBar::placeholder {
+    color:#cfcfcf;
+}
