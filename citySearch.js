@@ -308,13 +308,43 @@ const cities = [
 
 let greet = document.getElementsByClassName("greet")[0];
 let searchBar = document.getElementsByClassName("searchBar")[0];
+let searchButton = document.getElementsByClassName("searchButton")[0];
 let result = document.getElementsByClassName("result")[0];
-let cityName = document.getElementsByClassName("cityName")[0];
-let cityPop = document.getElementsByClassName("cityPop")[0];
-let cityLandmark = document.getElementsByClassName("cityLandmark")[0];
+// let cityName = document.getElementsByClassName("cityName")[0];
+// let cityPop = document.getElementsByClassName("cityPop")[0];
+// let cityLandmark = document.getElementsByClassName("cityLandmark")[0];
 
 function showGreeting(){
     greet.innerHTML = "Welcome to City Search";
 }
 
 showGreeting()
+
+searchButton.addEventListener("click", getSearchResult);
+
+function getSearchResult(){
+    let answer = searchBar.value;
+    let sVal = new RegExp (answer, "i");
+    let cityArray = cities[0].name;
+    //let answerChanged = sVal.match(cityArray);
+    console.log(answer);
+    console.log(sVal);
+    console.log(cityArray);
+    //console.log(answerChanged);
+}
+
+function showResult(showing){
+
+    showing.forEach(function (cityShown){
+        result.innerHTML += `<div class="infoLine">Wow! ${cityShown.name}, Great Choice!</div>`
+        result.innerHTML += `<div class="cityName">City: ${cityShown.name}</div>`;
+        result.innerHTML += `<div class="cityPop">Population: ${cityShown.population}</div>`;
+        result.innerHTML += `<div class="cityLandmark">Landmark: ${cityShown.landmark}</div>`;
+    });
+}
+
+showResult(cities)
+
+console.log(cities[0].name);
+console.log(cities[0].population);
+console.log(cities[0].landmark);
