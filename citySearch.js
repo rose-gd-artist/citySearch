@@ -310,41 +310,108 @@ let greet = document.getElementsByClassName("greet")[0];
 let searchBar = document.getElementsByClassName("searchBar")[0];
 let searchButton = document.getElementsByClassName("searchButton")[0];
 let result = document.getElementsByClassName("result")[0];
-// let cityName = document.getElementsByClassName("cityName")[0];
-// let cityPop = document.getElementsByClassName("cityPop")[0];
-// let cityLandmark = document.getElementsByClassName("cityLandmark")[0];
 
 function showGreeting(){
     greet.innerHTML = "Welcome to City Search";
 }
-
 showGreeting()
 
-searchButton.addEventListener("click", getSearchResult);
+// let answer = searchBar.value;
+// let sVal = answer.toLowerCase(searchBar.value);
 
-function getSearchResult(){
+function landingPage(){
+    if(answer === ""){
+        result.style.display = "none";
+    }
+}
+
+
+function getSearchResult(city){
+
     let answer = searchBar.value;
-    let sVal = new RegExp (answer, "i");
-    let cityArray = cities[0].name;
-    //let answerChanged = sVal.match(cityArray);
-    console.log(answer);
-    console.log(sVal);
-    console.log(cityArray);
-    //console.log(answerChanged);
+    let sVal = answer.toLowerCase(searchBar.value);
+
+    if(sVal.value === city.name){
+        let answer3 = answer2.map(function (city){
+            return `<div class="cityName">${city.name}</div>`
+        });
+        result.innerHTML +=  answer3;
+    }; 
 }
 
-function showResult(showing){
+searchBar.addEventListener("keyup", getSearchResult);
 
-    showing.forEach(function (cityShown){
-        result.innerHTML += `<div class="infoLine">Wow! ${cityShown.name}, Great Choice!</div>`
-        result.innerHTML += `<div class="cityName">City: ${cityShown.name}</div>`;
-        result.innerHTML += `<div class="cityPop">Population: ${cityShown.population}</div>`;
-        result.innerHTML += `<div class="cityLandmark">Landmark: ${cityShown.landmark}</div>`;
-    });
+// function filterResult(showing){
+    
+//     answer = searchBar.value;
+
+//     // if(answer === cityShown.name){
+//     //     result.innerHTML += `<div class="infoLine">Wow! ${this.name}, Great Choice!</div>`
+//     //     result.innerHTML += `<div class="cityName">City: ${this.name}</div>`;
+//     //     result.innerHTML += `<div class="cityPop">Population: ${commafy(this.population)}</div>`;
+//     //     result.innerHTML += `<div class="cityLandmark">Landmark: ${this.landmark}</div>`;
+//     // }
+
+//     const answer2 = showing.filter(function (cityShown){
+//             result.innerHTML += `<div class="infoLine">Wow! ${cityShown.name}, Great Choice!</div>`
+//             result.innerHTML += `<div class="cityName">City: ${cityShown.name}</div>`;
+//             result.innerHTML += `<div class="cityPop">Population: ${commafy(cityShown.population)}</div>`;
+//             result.innerHTML += `<div class="cityLandmark">Landmark: ${cityShown.landmark}</div>`;
+//     });
+//     console.log(answer2);
+//     return result.innerHTML += answer.join("");
+// } ///  didn't work
+
+// function filterResult(sVal){
+    
+//     let answer2 = cities.filter(city => {
+
+//         if(sVal === city.name){
+//             result.innerHTML += `<div class="infoLine">Wow! ${city.name}, Great Choice!</div>`
+//             result.innerHTML += `<div class="cityName">City: ${city.name}</div>`;
+//             result.innerHTML += `<div class="cityPop">Population: ${city.population}</div>`;
+//             //result.innerHTML += `<div class="cityPop">Population: ${commafy(cities.population)}</div>`;
+//             result.innerHTML += `<div class="cityLandmark">Landmark: ${city.landmark}</div>`;
+//             return result;
+//         } else {
+//             result.style.display = "none";
+//         }
+//         // result.innerHTML += `<div class="infoLine">Wow! ${cities.name}, Great Choice!</div>`
+//         // result.innerHTML += `<div class="cityName">City: ${cities.name}</div>`;
+//         // result.innerHTML += `<div class="cityPop">Population: ${cities.population}</div>`;
+//         // //result.innerHTML += `<div class="cityPop">Population: ${commafy(cities.population)}</div>`;
+//         // result.innerHTML += `<div class="cityLandmark">Landmark: ${cities.landmark}</div>`;
+//         // return result;
+//         ///  didn't work
+//     }); ///  didn't work
+
+//     //console.log(answer2);
+
+// } 
+
+// getSearchResult("keyup", filterResult)   // didn't work
+
+
+const answer2 = cities.filter(city => {
+
+    result.innerHTML += `<div class="infoLine">Wow! ${city.name}, Great Choice!</div>`
+    result.innerHTML += `<div class="cityName">City: ${city.name}</div>`;
+    result.innerHTML += `<div class="cityPop">Population: ${city.population}</div>`;
+    //result.innerHTML += `<div class="cityPop">Population: ${commafy(cities.population)}</div>`;
+    result.innerHTML += `<div class="cityLandmark">Landmark: ${city.landmark}</div>`;
+    return result;
+
+});
+
+function commafy(num) {
+    var str = num.toString().split('.');
+    if (str[0].length >= 5) {
+        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+    }
+    if (str[1] && str[1].length >= 5) {
+        str[1] = str[1].replace(/(\d{3})/g, '$1 ');
+    }
+    return str.join('.');
 }
 
-showResult(cities)
-
-console.log(cities[0].name);
-console.log(cities[0].population);
-console.log(cities[0].landmark);
+searchButton.addEventListener("click", getSearchResult);
