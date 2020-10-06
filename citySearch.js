@@ -308,7 +308,6 @@ const cities = [
 
 let greet = document.getElementsByClassName("greet")[0];
 let searchBar = document.getElementsByClassName("searchBar")[0];
-let searchButton = document.getElementsByClassName("searchButton")[0];
 let result = document.getElementsByClassName("result")[0];
 
 function showGreeting(){
@@ -316,57 +315,58 @@ function showGreeting(){
 }
 showGreeting()
 
-// let answer = searchBar.value;
-// let sVal = answer.toLowerCase(searchBar.value);
+// function getSearchResult(event){
 
-// function landingPage(){
-//     if(answer === ""){
-//         result.style.display = "none";
-//     }
-// }
+//     let searchTerm = event.target.value;
+//     let sVal = searchTerm.toLowerCase();
 
-
-function getSearchResult(event){
-
-    let searchTerm = event.target.value;
-    let sVal = searchTerm.toLowerCase();
-
-    const filteredCities = cities.filter((city) => {
-        return sVal === city.name;
-    })
+//     const filteredCities = cities.filter((city) => {
+//         return sVal === city.name;
+//     })
     
-    const cityHTML = filteredCities.map((city) => {
-        return `<div class="cityName">${city.name}</div>`
-    })
-    result.innerHTML += cityHTML;
+//     const cityHTML = filteredCities.map((city) => {
+//         return `<div class="cityName">${city.name}</div>`
+//     })
+//     result.innerHTML += cityHTML;
 
-    return result;
-
-}
-
-searchBar.addEventListener("keyup", getSearchResult);
-
-
-// const answer2 = cities.filter(city => {
-
-//     result.innerHTML += `<div class="infoLine">Wow! ${city.name}, Great Choice!</div>`
-//     result.innerHTML += `<div class="cityName">City: ${city.name}</div>`;
-//     result.innerHTML += `<div class="cityPop">Population: ${city.population}</div>`;
-//     //result.innerHTML += `<div class="cityPop">Population: ${commafy(cities.population)}</div>`;
-//     result.innerHTML += `<div class="cityLandmark">Landmark: ${city.landmark}</div>`;
 //     return result;
 
-// });
-
-// function commafy(num) {
-//     var str = num.toString().split('.');
-//     if (str[0].length >= 5) {
-//         str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
-//     }
-//     if (str[1] && str[1].length >= 5) {
-//         str[1] = str[1].replace(/(\d{3})/g, '$1 ');
-//     }
-//     return str.join('.');
 // }
 
-//searchButton.addEventListener("click", getSearchResult);
+//searchBar.addEventListener("keyup", getSearchResult);
+
+const displayCities = (bigTown) => {
+    const cityListings = bigTown.map(bigTown => {
+        return `<div class="cityName">City: ${bigTown.name}</div>
+                <div class="cityPop">Population: ${bigTown.population}</div>
+                <div class="cityLandmark">Landmark: ${bigTown.landmark}</div>`;
+    });
+    result.innerHTML = cityListings;
+};
+
+displayCities(cities)
+
+function cityFiltered(event) {
+    let inSearchBar = event.target.value;
+    let sVal = inSearchBar.toLowerCase();
+
+    const selectedCity = cities.filter((city) => {
+        if(inSearchBar.value === city.name){
+            return inSearchBar === city.name.toLowerCase().includes(sVal);
+        }
+
+    });
+    
+    const searchEntered = selectedCity.map((city) => {
+
+            return `<div class="cityName">City: ${city.name}</div>
+                <div class="cityPop">Population: ${city.population}</div>
+                <div class="cityLandmark">Landmark: ${city.landmark}</div>`;
+            
+
+    });
+    result.innerHTML += searchEntered.join("");
+    //return result;
+};
+
+searchBar.addEventListener('keyup', cityFiltered)
