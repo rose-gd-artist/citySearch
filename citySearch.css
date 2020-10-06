@@ -1,49 +1,60 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2vw;
+    color: #120c77;
+    background-color: #ffc57e;
+    background-image: url(images/orangeGlass.svg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 50% auto;
+    background-position: right 1vw;
+    background-origin: content-box;
 }
 .wrapper {
     width: 100%;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 2vw;
-    color: #000;
 }
 .greet {
     width: 50%;
     margin: 3vw 0% 0vw 25%;
     font-size: 3vw;
     text-align: center;
+    font-weight: 600;
 }
 .searchBar {
     width: 50%;
     height: 4vw;
-    border: 2px solid #000;
+    border: 0px solid transparent;
     border-radius: 1vw;
+    color:#120c77;
     font-size: 2vw;
     padding-left: 3%;
     margin: 3vw 1% 2vw 25%;
+    outline: none;
 }
 .searchBar::placeholder {
     color:#cfcfcf;
+    font-weight: 400;
 }
 .result {
+    width: 50%;
+    font-size: 2.75vw;
+    color:#120c77;
     padding: 2vw 25%;
-}
-.hide {
-    display: none;
-}
-.show {
-    display: block;
+
 }
 .cityName, .cityPop {
-    font-size: 2.75vw;
-    color: #000;
+    font-weight: 500;
     margin-bottom: 0.25vw;
     padding-left: 2%;
 }
 .cityLandmark {
-    font-size: 2.75vw;
-    color: #000;
+    font-weight: 500;
     margin-bottom: 2vw;
     padding-left: 2%;
+}
+.lighter {
+    font-size: 2.3vw;
+    font-weight: 300;
 }
